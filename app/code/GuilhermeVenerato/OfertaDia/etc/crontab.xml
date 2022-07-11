@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Oferta do dia
+ *
+ * Extensão para cadastro de ofertas do dia
+ *
+ * @package GuilhermeVenerato\OfertaDia
+ * @author Guilherme Venerato <guilhermevenerato@hotmail.com>
+ * Copyright © 2022 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job instance="GuilhermeVenerato\OfertaDia\Cron\OfertaDiaCheck" method="execute" name="oferta_dia_check">
+            <schedule>*/1 * * * *</schedule>
+        </job>
+    </group>
+</config>

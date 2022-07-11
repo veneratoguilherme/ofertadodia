@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * Integração CPA da Lomadee
+ *
+ * PFerramentas_Lomadee
+ *
+ * @category  PFerramentas
+ * @package   PFerramentas_Lomadee
+ * @author    Guilherme Venerato <guilhermevenerato@palaciodasferramentas.com.br>
+ * @copyright Copyright (c) 2020 Palácio das Ferramentas (https://www.palaciodasferramentas.com.br/)
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+
+/** @var \GuilhermeVenerato\OfertaDia\Block\Data $block */
+/** @var * @var \Magento\Framework\Escaper $escaper */
+
+$oferta = $block->getOfertaDia();
+if ($oferta) :
+?>
+<div class="oferta-dia">
+    <a href="#"><?= __('Oferta do dia') ?></a>
+    <div class="produto-oferta-dia">
+        <ol class="products list items product-items">
+            <li class="item product product-item">
+                <?php // Product Image ?>
+                <a href="<?= $escaper->escapeUrl($oferta['url']) ?>" class="product photo product-item-photo" tabindex="-1">
+                    <img src="<?= $oferta['imagem'] ?>" alt="<?= $oferta['nome'] ?>" title="<?= $oferta['nome'] ?>" />
+                </a>
+                <div class="product details product-item-details">
+                    <strong class="product name product-item-name">
+                        <a class="product-item-link" href="<?= $escaper->escapeUrl($oferta['url']) ?>">
+                            <?= $oferta['nome'] ?>
+                        </a>
+                    </strong>
+                    <div class="product-item-inner">
+                        <div class="produto-sku">
+                            <strong><?= __('Código: ') ?></strong> <?= $oferta['sku'] ?>
+                        </div>
+                        <div class="price-box price-final_price">
+                        <span class="price-container price-final_price tax weee">
+                            <span id="product-price-<?= $oferta['id'] ?>>" class="price-wrapper">
+                                <span class="price"><?= $oferta['preco'] ?></span>
+                            </span>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+</div>
+<?php endif; ?>

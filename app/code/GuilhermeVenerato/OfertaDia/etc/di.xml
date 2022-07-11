@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Oferta do dia
+ *
+ * Extensão para cadastro de ofertas do dia
+ *
+ * @package GuilhermeVenerato\OfertaDia
+ * @author Guilherme Venerato <guilhermevenerato@hotmail.com>
+ * Copyright © 2022 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="OfertaDiaGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <preference for="GuilhermeVenerato\OfertaDia\Api\Data\GridInterface" type="GuilhermeVenerato\OfertaDia\Model\OfertaDia" />
+    <virtualType name="GridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">GuilhermeVenerato\OfertaDia\Model\Resource\OfertaDia\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">OfertaDiaGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GuilhermeVenerato\OfertaDia\Model\ResourceModel\OfertaDia\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">oferta_dia</argument>
+            <argument name="resourceModel" xsi:type="string">GuilhermeVenerato\OfertaDia\Model\ResourceModel\OfertaDia</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="ofertadia_grid_listing_data_source" xsi:type="string">GuilhermeVenerato\OfertaDia\Model\ResourceModel\OfertaDia\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Save">
+        <plugin name="guilhermevenerato_ofertadia_save_product"
+                type="GuilhermeVenerato\OfertaDia\Plugin\Product\Save"
+        />
+    </type>
+</config>

@@ -1,0 +1,25 @@
+<!--
+/**
+ * Oferta do dia
+ *
+ * Extensão para cadastro de ofertas do dia
+ *
+ * @package GuilhermeVenerato\OfertaDia
+ * @author Guilherme Venerato <guilhermevenerato@hotmail.com>
+ * Copyright © 2022 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="oferta_dia">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" identity="true" nullable="false" comment="Identificador da tabela"/>
+        <column xsi:type="varchar" name="sku" length="255" nullable="false" comment="SKU do produto"/>
+        <column xsi:type="datetime" name="dataInicial" nullable="false" on_update="false" comment="Data inicial da oferta"/>
+		<column xsi:type="datetime" name="dataFinal" nullable="false" on_update="false" comment="Data final da oferta"/>
+        <column xsi:type="smallint" name="status" nullable="false" comment="Status" default="0"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>
